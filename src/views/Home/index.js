@@ -1,14 +1,14 @@
 import React from 'react';
-import * as S from './styles';
+import * as style from './styles';
 
 //NOSSOS COMPONENTES
 import Header from '../../components/Header'
 
 function Home() {
   return (
-    <S.Container>
+    <style.Container>
       <Header/>
-    </S.Container>
+    </style.Container>
   )
 }
 
