@@ -7,7 +7,6 @@ export const Container = styled.div`
     border-bottom: 5px solid #ee6b26;
 
     display: flex;
-
 `
 
 export const LeftSide = styled.div`

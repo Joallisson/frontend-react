@@ -1,14 +1,16 @@
 import React from 'react';
-import * as style from './styles';
+import * as Style from './styles';
 
 //NOSSOS COMPONENTES
 import Header from '../../components/Header'
+import Footer from '../../components/Footer';
 
 function Home() {
   return (
-    <style.Container>
+    <Style.Container>
       <Header/>
-    </style.Container>
+      <Footer/>
+    </Style.Container>
   )
 }
 

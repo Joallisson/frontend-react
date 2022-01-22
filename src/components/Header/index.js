@@ -1,18 +1,18 @@
 import React from 'react';
-import * as style from './styles'
+import * as Style from './styles'
 
 import logo from '../../Assets/logo.png';
 import bell from '../../Assets/bell.png'
 
 function Header() {
   return (
-    <style.Container>
+    <Style.Container>
 
-      <style.LeftSide>
+      <Style.LeftSide>
         <img src={logo} alt="Logo"/>
-      </style.LeftSide>
+      </Style.LeftSide>
 
-      <style.RightSide>
+      <Style.RightSide>
         <a href='#'>INÍCIO</a>
         <span className='dividir'/>
 
@@ -26,9 +26,9 @@ function Header() {
          <img src={bell} alt="Notificação"/>
          <span>5</span>
         </a>
-      </style.RightSide>
+      </Style.RightSide>
       
-    </style.Container>
+    </Style.Container>
   )
 }
 
