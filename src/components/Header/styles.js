@@ -42,7 +42,7 @@ export const RightSide = styled.div`
 
     #notification{
       img{
-        width: 35%;
+        width: 30px;
       } 
 
       span{

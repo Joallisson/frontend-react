@@ -1,10 +1,13 @@
 import React from "react";
 import * as Styles from './styles'
 
-function FilterCard(){
-    return(
-        <Styles.Container>
+import filter from '../../Assets/filter.png'
 
+function FilterCard({title, actived}){
+    return(
+        <Styles.Container actived={actived}>
+            <img src={filter} alt="Filtro"/>
+            <span>{title}</span>
         </Styles.Container>
     )
 }

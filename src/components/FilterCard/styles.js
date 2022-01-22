@@ -1,10 +1,32 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 300px;
-    height: 100px;
-    background: #20295f;
+    width: 260px;
+    height: 60px;
+    background: ${(props) => props.actived ? '#EE6B26' : '#20295f'};
     border-radius: 5px;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+    cursor: pointer;
 
     display: flex;
+
+    img{
+        width: 25px;
+        height: 25px;
+    }
+
+    span{
+        color: #fff;
+        font-weight: bold;
+        align-self: flex-end;
+        justify-content: center;
+        font-size: 18px;
+
+    }
+
+    &:hover{
+        background: #EE6B26;
+    }
 `
