@@ -15,3 +15,8 @@ export const FilterArea = styled.div`
         border: none;
     }
 `
+
+export const Content = styled.div`
+    width: 100%;
+
+`

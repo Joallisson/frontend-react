@@ -5,6 +5,7 @@ import * as Style from './styles';
 import Header from '../../components/Header'
 import Footer from '../../components/Footer';
 import FilterCard from '../../components/FilterCard';
+import TaskCard from '../../components/TaskCard';
 
 function Home() {
 
@@ -34,12 +35,12 @@ function Home() {
           <button type='button'        onClick={() => setFilterActived('year')}>
             <FilterCard title='Ano'    actived={filterActived == 'year'}/>
           </button>
-          
-          
-          
-          
-          
+
         </Style.FilterArea>
+
+        <Style.Content>
+          <TaskCard/>
+        </Style.Content>
       
       <Footer/>
     </Style.Container>
