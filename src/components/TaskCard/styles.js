@@ -11,8 +11,14 @@ export const Container = styled.div`
 
     box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.23);
     border-radius: 10px;
+    margin: 20px;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 
-    
+    &:hover{
+        opacity: 0.5;
+    }
 `
 
 export const TopCard = styled.div`

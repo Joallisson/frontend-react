@@ -38,7 +38,22 @@ function Home() {
 
         </Style.FilterArea>
 
+        <Style.Title>
+          <h3>TAREFAS</h3>
+        </Style.Title>
+
         <Style.Content>
+          <TaskCard/>
+          <TaskCard/>
+          <TaskCard/>
+          <TaskCard/>
+          <TaskCard/>
+          <TaskCard/>
+          <TaskCard/>
+          <TaskCard/>
+          <TaskCard/>
+          <TaskCard/>
+          <TaskCard/>
           <TaskCard/>
         </Style.Content>
       
