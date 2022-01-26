@@ -4,7 +4,7 @@ import * as Style from './styles'
 import logo from '../../Assets/logo.png';
 import bell from '../../Assets/bell.png'
 
-function Header() {
+function Header(props) {
   return (
     <Style.Container>
 
@@ -22,10 +22,10 @@ function Header() {
         <a href='#'>SINCRONIZAR CELULAR</a>
         <span className='dividir'/>
 
-        <a href='#' id='notification'>
-         <img src={bell} alt="Notificação"/>
-         <span>5</span>
-        </a>
+        <button onClick={props.clickNotification} id='notification'>
+          <img src={bell} alt="Notificação"/>
+          <span>{props.lateCount}</span>
+        </button>
       </Style.RightSide>
       
     </Style.Container>
