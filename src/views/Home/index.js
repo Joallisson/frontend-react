@@ -1,5 +1,8 @@
-import React, {useState } from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import * as Style from './styles';
+
+//IMPORTANDO API
+import api from '../../services/api'
 
 //NOSSOS COMPONENTES
 import Header from '../../components/Header'
@@ -10,6 +13,20 @@ import TaskCard from '../../components/TaskCard';
 function Home() {
 
   const [filterActived, setFilterActived] = useState('today')
+  const [tasks, setTasks] = useState([])
+
+  
+
+  async function loadTasks(){
+    await api.get(`/task/filter/${filterActived}/11:11:11:11:11:11`)
+              .then(({data}) => {
+                setTasks(data)
+              })
+  }
+
+  useEffect(() => {
+    loadTasks()
+  }, [filterActived])
 
   return (
     <Style.Container>
@@ -17,23 +34,23 @@ function Home() {
 
         <Style.FilterArea>
           <button type='button'        onClick={() => setFilterActived('all')}>
-            <FilterCard title='Todos'  actived={filterActived == 'all'}/>
+            <FilterCard title='Todos'  actived={filterActived === 'all'}/>
           </button>
 
           <button type='button'        onClick={() => setFilterActived('today')}>
-            <FilterCard title='Hoje'   actived={filterActived == 'today'}/>
+            <FilterCard title='Hoje'   actived={filterActived === 'today'}/>
           </button>
 
           <button type='button'        onClick={() => setFilterActived('week')}>
-            <FilterCard title='Semana' actived={filterActived == 'week'}/>
+            <FilterCard title='Semana' actived={filterActived === 'week'}/>
           </button>
 
           <button type='button'        onClick={() => setFilterActived('month')}>
-            <FilterCard title='Mês'    actived={filterActived == 'month'}/>
+            <FilterCard title='Mês'    actived={filterActived === 'month'}/>
           </button>
 
           <button type='button'        onClick={() => setFilterActived('year')}>
-            <FilterCard title='Ano'    actived={filterActived == 'year'}/>
+            <FilterCard title='Ano'    actived={filterActived === 'year'}/>
           </button>
 
         </Style.FilterArea>
@@ -43,18 +60,11 @@ function Home() {
         </Style.Title>
 
         <Style.Content>
-          <TaskCard/>
-          <TaskCard/>
-          <TaskCard/>
-          <TaskCard/>
-          <TaskCard/>
-          <TaskCard/>
-          <TaskCard/>
-          <TaskCard/>
-          <TaskCard/>
-          <TaskCard/>
-          <TaskCard/>
-          <TaskCard/>
+          {
+            tasks.map((item) => {
+              return <TaskCard type={item.type} title={item.title} when={item.when}/>
+            })
+          }
         </Style.Content>
       
       <Footer/>
