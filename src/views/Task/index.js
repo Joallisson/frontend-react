@@ -17,11 +17,32 @@ function Task(){
     const [lateCount, setLateCount] = useState()
     const [type, setType] = useState()
 
+    //VARIÁVEIS DE ESTADOS DE CADASTRO
+    const [id, setId] = useState()
+    const [done, setDone] = useState(false)
+    const [title, setTitle] = useState()
+    const [description, setDescription] = useState()
+    const [date, setDate] = useState()
+    const [hour, setHour] = useState()
+    const [macaddress, setMacaddress] = useState('11:11:11:11:11:11')
+
     async function lateVerify(){
         await api.get(`/task/filter/late/11:11:11:11:11:11`)
         .then((response) => {
             setLateCount(response.data.length)
         })
+    }
+
+    async function Save(){
+        await api.post('/task', {
+            macaddress,
+            type,
+            title,
+            description,
+            when: `${date}T${hour}:00.000`
+        }).then(() => 
+            alert("TAREFA CADASTRADA COM SUCESSO")
+        )
     }
 
     useEffect(() => { 
@@ -47,36 +68,50 @@ function Task(){
 
                     <Styles.Input>
                         <span>Título</span>
-                        <input type='text' placeholder="Título da Tarefa..."/>
+                        <input type='text' 
+                        placeholder="Título da Tarefa..."
+                        onChange={(changed) => {setTitle(changed.target.value)}}
+                        value={title}
+                        />
                     </Styles.Input>
 
                     <Styles.TextArea>
-                        <span>Detalhes</span>
-                        <textarea rows={5} placeholder="Detalhes da terefa"/>
+                        <span>Descrição</span>
+                        <textarea rows={5} 
+                        placeholder="Detalhes da terefa"
+                        onChange={(e) => {setDescription(e.target.value)}}
+                        value={description}
+                        />
                     </Styles.TextArea>
 
                     <Styles.Input>
                         <span className="dataHora">Data</span>
-                        <input type='date' placeholder="Título da Tarefa..."/>
+                        <input type='date' placeholder="Título da Tarefa..."
+                        onChange={(e) => setDate(e.target.value)}
+                        value={date}
+                        />
                         <img src={iconCalendar} alt="Calendário"/>
                     </Styles.Input>
 
                     <Styles.Input>
                         <span className="dataHora">Hora</span>
-                        <input type='time' placeholder="Título da Tarefa..."/>
+                        <input type='time' placeholder="Título da Tarefa..."
+                        onChange={e => (setHour(e.target.value))}
+                        value={hour}
+                        />
                         <img src={iconClock} alt="Relógio"/>
                     </Styles.Input>
 
                     <Styles.Options>
                         <div>
-                            <input type='checkbox'/>
+                            <input type='checkbox' checked={done} onChange={() => (setDone(!done))}/>
                             <span>CONCLUÍDO</span>
                         </div>
                         <button>EXCLUIR</button>
                     </Styles.Options>
 
                     <Styles.Save>
-                        <button>SALVAR</button>
+                        <button onClick={Save}>SALVAR</button>
                     </Styles.Save>
 
                 </Styles.Form>
