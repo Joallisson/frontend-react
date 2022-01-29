@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import * as Styles from './styles'
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { format } from "date-fns";
 
 //IMPORTANDO A API
@@ -16,6 +16,9 @@ import iconClock from '../../Assets/clock.png'
 
 function Task({match}){
 
+    //VARIÁVEIS DE ESTADOS DE UPDATE
+    const [redirect, setRedirect] = useState(false)
+
     const {_id}= useParams() //Pegando a variável _id que está sendo passada pela url
 
     const [lateCount, setLateCount] = useState()
@@ -29,6 +32,8 @@ function Task({match}){
     const [date, setDate] = useState()
     const [hour, setHour] = useState()
     const [macaddress, setMacaddress] = useState('11:11:11:11:11:11')
+
+    
 
     async function lateVerify(){
         await api.get(`/task/filter/late/11:11:11:11:11:11`)
@@ -49,15 +54,29 @@ function Task({match}){
     }
 
     async function Save(){
-        await api.post('/task', {
-            macaddress,
-            type,
-            title,
-            description,
-            when: `${date}T${hour}:00.000`
-        }).then(() => 
-            alert("TAREFA CADASTRADA COM SUCESSO")
-        )
+        if(_id){ //Se existir o parâmetro _id então vai atualizar uma tarefa
+            await api.put(`/task/${_id}`, {
+                macaddress,
+                done,
+                type,
+                title,
+                description,
+                when: `${date}T${hour}:00.000`
+            }).then(() => {
+                setRedirect(true)
+            })
+
+        }else{ //Senão vai cadastrar
+            await api.post('/task', {
+                macaddress,
+                type,
+                title,
+                description,
+                when: `${date}T${hour}:00.000`
+            }).then(() => 
+                setRedirect(true)
+            )
+        }
     }
 
     useEffect(() => { 
@@ -67,6 +86,9 @@ function Task({match}){
 
     return(
         <Styles.Container>
+
+            {redirect && <Navigate to='/'/>}
+
             <Header lateCount={lateCount}/>
 
                 <Styles.Form>
