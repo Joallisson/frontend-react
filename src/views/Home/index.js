@@ -74,12 +74,13 @@ function Home() {
 
         <Style.Content>
           {
-            tasks.map((item) => {
-              <Link to={`/task/${item._id}`}>
-                <TaskCard type={item.type} title={item.title} when={item.when}/>
-              </Link>
-            })
-          }
+            tasks.map((item) => 
+              (
+                <Link to={`/task/${item._id}`}>
+                  <TaskCard type={item.type} title={item.title} when={item.when}/>
+                </Link>    
+              )
+            )}
         </Style.Content>
       
       <Footer/>

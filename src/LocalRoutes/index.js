@@ -10,6 +10,7 @@ export default function LocalRoutes(){
             <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path='/task' element={<Task/>}/>
+                <Route path='/task/:_id' element={<Task/>}/>
             </Routes>
         </BrowserRouter>
     )

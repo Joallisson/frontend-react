@@ -7,7 +7,6 @@ import typeIcons from '../../utils/typeIcons'
 function TaskCard({type, title, when}){
     const date = useMemo(() => format(new Date(when), 'dd/MM/yyyy'))
     const hour = useMemo(() => format(new Date(when), 'HH:mm'))
-    console.log(hour)
     return(
         <Styles.Container>
             <Styles.TopCard>
