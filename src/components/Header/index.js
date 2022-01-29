@@ -1,6 +1,8 @@
 import React from 'react';
 import * as Style from './styles'
 
+import {Link} from 'react-router-dom'
+
 import logo from '../../Assets/logo.png';
 import bell from '../../Assets/bell.png'
 
@@ -13,13 +15,13 @@ function Header(props) {
       </Style.LeftSide>
 
       <Style.RightSide>
-        <a href='#'>INÍCIO</a>
+        <Link to='/'>INÍCIO</Link>
         <span className='dividir'/>
 
-        <a href='#'>NOVA TAREFA</a>
+        <Link to='/task'>NOVA TAREFA</Link>
         <span className='dividir'/>
         
-        <a href='#'>SINCRONIZAR CELULAR</a>
+        <Link to='#'>SINCRONIZAR CELULAR</Link>
         <span className='dividir'/>
 
         <button onClick={props.clickNotification} id='notification'>
