@@ -1,6 +1,8 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import * as Style from './styles';
 
+import { Link } from 'react-router-dom';
+
 //IMPORTANDO API
 import api from '../../services/api'
 
@@ -73,7 +75,9 @@ function Home() {
         <Style.Content>
           {
             tasks.map((item) => {
-              return <TaskCard type={item.type} title={item.title} when={item.when}/>
+              <Link to={`/task/${item._id}`}>
+                <TaskCard type={item.type} title={item.title} when={item.when}/>
+              </Link>
             })
           }
         </Style.Content>
