@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import * as Styles from './styles'
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 
 //IMPORTANDO A API
@@ -20,6 +20,7 @@ function Task({match}){
     const [redirect, setRedirect] = useState(false)
 
     const {_id}= useParams() //Pegando a variável _id que está sendo passada pela url
+    const navigate = useNavigate()
 
     const [lateCount, setLateCount] = useState()
     const [type, setType] = useState()
@@ -35,14 +36,14 @@ function Task({match}){
 
     
 
-    async function lateVerify(){
+    async function lateVerify(){ //Verificar Tarefas atrasadas
         await api.get(`/task/filter/late/11:11:11:11:11:11`)
         .then((response) => {
             setLateCount(response.data.length)
         })
     }
 
-    async function LoadTaskDetails(){
+    async function LoadTaskDetails(){ //Carregar informações das tarefas assim que o usuário clicar nelas
         await api.get(`/task/${_id}`)
         .then(response => {
             setType(response.data.type)
@@ -53,7 +54,7 @@ function Task({match}){
         })
     }
 
-    async function Save(){
+    async function Save(){ //Salvar dados de cadastros ou de atualização
         if(_id){ //Se existir o parâmetro _id então vai atualizar uma tarefa
             await api.put(`/task/${_id}`, {
                 macaddress,
@@ -79,16 +80,14 @@ function Task({match}){
         }
     }
 
-    useEffect(() => { 
+    useEffect(() => {  //Carregar funções dentro do use effect
         lateVerify()
         LoadTaskDetails()
     }, [])
 
     return(
         <Styles.Container>
-
-            {redirect && <Navigate to='/task'/>}
-
+            {redirect && navigate("/")}
             <Header lateCount={lateCount}/>
 
                 <Styles.Form>
