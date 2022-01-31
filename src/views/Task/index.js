@@ -87,7 +87,7 @@ function Task({match}){
     return(
         <Styles.Container>
 
-            {redirect && <Navigate to='/'/>}
+            {redirect && <Navigate to='/task'/>}
 
             <Header lateCount={lateCount}/>
 
