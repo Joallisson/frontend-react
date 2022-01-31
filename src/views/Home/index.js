@@ -77,7 +77,7 @@ function Home() {
             tasks.map((item) => 
               (
                 <Link to={`/task/${item._id}`}>
-                  <TaskCard type={item.type} title={item.title} when={item.when}/>
+                  <TaskCard type={item.type} title={item.title} when={item.when} done={item.done}/>
                 </Link>    
               )
             )}

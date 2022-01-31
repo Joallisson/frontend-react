@@ -47,6 +47,7 @@ function Task({match}){
         await api.get(`/task/${_id}`)
         .then(response => {
             setType(response.data.type)
+            setDone(response.data.done)
             setTitle(response.data.title)
             setDescription(response.data.description)
             setDate(format(new Date(response.data.when), 'yyyy-MM-dd'))
@@ -55,6 +56,19 @@ function Task({match}){
     }
 
     async function Save(){ //Salvar dados de cadastros ou de atualização
+
+        if(!title){
+            alert("Você precisa informar o título da tarefa")
+        }else if(!description){
+            alert("Você precisa informar a descrição da tarefa")
+        }else if(!type){
+            alert("Você precisa informar o tipo da tarefa")
+        }else if(!date){
+            alert("Você precisa informar a data da tarefa")
+        }else if(!hour){
+            alert("Você precisa informar a hora da tarefa")
+        }
+
         if(_id){ //Se existir o parâmetro _id então vai atualizar uma tarefa
             await api.put(`/task/${_id}`, {
                 macaddress,
@@ -87,7 +101,9 @@ function Task({match}){
 
     return(
         <Styles.Container>
+
             {redirect && navigate("/")}
+
             <Header lateCount={lateCount}/>
 
                 <Styles.Form>
