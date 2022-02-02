@@ -22,12 +22,18 @@ function Header(props) {
         <span className='dividir'/>
         
         <Link to='/qrcode'>SINCRONIZAR CELULAR</Link>
-        <span className='dividir'/>
 
-        <button onClick={props.clickNotification} id='notification'>
-          <img src={bell} alt="Notificação"/>
-          <span>{props.lateCount}</span>
-        </button>
+        {
+          props.lateCount &&
+          <>
+            <span className='dividir'/>
+            <button onClick={props.clickNotification} id='notification'>
+              <img src={bell} alt="Notificação"/>
+              <span>{props.lateCount}</span>
+            </button>
+          </>
+        }
+
       </Style.RightSide>
       
     </Style.Container>

@@ -14,6 +14,7 @@ export const Content = styled.div`
     flex-direction: column;
     align-items: center;
 
+
     h1{
         color: #EE6B26;
     }

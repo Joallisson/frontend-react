@@ -9,11 +9,11 @@ function QrCode(){
     return(
         <Styles.Container>
             <Header/>
-            
+
             <Styles.Content>
                 <h1>CAPTURE O QRCODE PELO CELULAR</h1>
                     <Styles.QrCodeArea>
-                        
+
                     </Styles.QrCodeArea>
                 <p>Suas atividades serão sincronizadas com a do seu celular</p>
             </Styles.Content>
