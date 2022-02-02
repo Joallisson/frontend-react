@@ -94,6 +94,16 @@ function Task({match}){
         }
     }
 
+    async function Remove(){ //Remover tarefa
+        const res = window.confirm("Deseja realmente remover essa tarefa?")
+        if (res) { //Se o usuário clicar em sim na mensagem que pergunta se ele quer remover a tarefa
+            await api.delete(`/task/${_id}`)
+            .then(() => setRedirect(true))
+        } else {
+            window.alert("OK, Vamos manter")
+        }
+    }
+
     useEffect(() => {  //Carregar funções dentro do use effect
         lateVerify()
         LoadTaskDetails()
@@ -102,7 +112,7 @@ function Task({match}){
     return(
         <Styles.Container>
 
-            {redirect && navigate("/")}
+            {redirect && navigate("/")/* Se redirect for verdadeiro então a página atual vai ser redirecionada pra home */}
 
             <Header lateCount={lateCount}/>
 
@@ -160,7 +170,7 @@ function Task({match}){
                             <input type='checkbox' checked={done} onChange={() => (setDone(!done))}/>
                             <span>CONCLUÍDO</span>
                         </div>
-                        <button>EXCLUIR</button>
+                        {_id && <button onClick={Remove}>EXCLUIR</button>}
                     </Styles.Options>
 
                     <Styles.Save>
