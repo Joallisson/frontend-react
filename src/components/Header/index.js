@@ -21,7 +21,7 @@ function Header(props) {
         <Link to='/task'>NOVA TAREFA</Link>
         <span className='dividir'/>
         
-        <Link to='#'>SINCRONIZAR CELULAR</Link>
+        <Link to='/qrcode'>SINCRONIZAR CELULAR</Link>
         <span className='dividir'/>
 
         <button onClick={props.clickNotification} id='notification'>
