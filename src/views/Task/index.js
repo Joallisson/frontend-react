@@ -22,7 +22,6 @@ function Task({match}){
     const {_id}= useParams() //Pegando a variável _id que está sendo passada pela url
     const navigate = useNavigate()
 
-    const [lateCount, setLateCount] = useState()
     const [type, setType] = useState()
 
     //VARIÁVEIS DE ESTADOS DE CADASTRO
@@ -33,15 +32,6 @@ function Task({match}){
     const [date, setDate] = useState()
     const [hour, setHour] = useState()
     const [macaddress, setMacaddress] = useState('11:11:11:11:11:11')
-
-    
-
-    async function lateVerify(){ //Verificar Tarefas atrasadas
-        await api.get(`/task/filter/late/11:11:11:11:11:11`)
-        .then((response) => {
-            setLateCount(response.data.length)
-        })
-    }
 
     async function LoadTaskDetails(){ //Carregar informações das tarefas assim que o usuário clicar nelas
         await api.get(`/task/${_id}`)
@@ -105,7 +95,6 @@ function Task({match}){
     }
 
     useEffect(() => {  //Carregar funções dentro do use effect
-        lateVerify()
         LoadTaskDetails()
     }, [])
 
@@ -114,7 +103,7 @@ function Task({match}){
 
             {redirect && navigate("/")/* Se redirect for verdadeiro então a página atual vai ser redirecionada pra home */}
 
-            <Header lateCount={lateCount}/>
+            <Header/>
 
                 <Styles.Form>
                     <Styles.TypeIcons>
