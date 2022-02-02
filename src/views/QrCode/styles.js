@@ -14,7 +14,6 @@ export const Content = styled.div`
     flex-direction: column;
     align-items: center;
 
-
     h1{
         color: #EE6B26;
     }
@@ -26,6 +25,40 @@ export const Content = styled.div`
 
 export const QrCodeArea = styled.div`
     width: 100%;
-    height: 400px;
-    background: blue;
+    display: flex;
+    justify-content: center;
+`
+
+export const ValidationCode = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+
+    span{
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    input{
+        font-size: 18px;
+        padding: 10px;
+        margin: 10px 0px;
+        text-align: center;
+    }
+
+    button{
+        font-weight: bold;
+        background: #EE6B26;
+        color: #fff;
+        padding: 10px;
+        font-size: 18px;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+
+        &:hover{
+            background: #20295F;
+        }
+    }
 `
