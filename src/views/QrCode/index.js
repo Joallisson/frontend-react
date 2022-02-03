@@ -16,6 +16,7 @@ function QrCode(){
     async function saveMac(){ //Salvar o macaddress do Qrcode
         await localStorage.setItem('@todo/macaddress', mac) //Salva informações no navegador. O primeiro parâmetro é a chave e o segundo é o valor
         setRedirect(true) //Alterabdo o Valor de redirect
+        window.location.reload() //Recarregar a página
     }
 
     return(
