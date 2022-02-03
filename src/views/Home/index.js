@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import * as Style from './styles';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 //IMPORTANDO API
 import api from '../../services/api'
@@ -16,8 +16,11 @@ import TaskCard from '../../components/TaskCard';
 
 function Home() {
 
-  const [filterActived, setFilterActived] = useState('today')
+  const [filterActived, setFilterActived] = useState('today') //Filtro escolhido por padrão
   const [tasks, setTasks] = useState([])
+  const [redirect, setRedirect] = useState(false) //Por padrão essa variável vai ser falsa, mas quando conectar no QrCode vai ser verdadeira e vai redirecionar pra página home
+
+  const navigate = useNavigate()
 
   async function loadTasks(){
     await api.get(`/task/filter/${filterActived}/11:11:11:11:11:11`)
@@ -32,12 +35,16 @@ function Home() {
 
   useEffect(() => {
     loadTasks()
-    alert(isConnected)
+    if (!isConnected) { //Senão estiver conectado, então vai ser redirecionado
+      setRedirect(true)
+    }
   }, [filterActived])
 
   return (
     <Style.Container>
       
+      {redirect && navigate("/qrcode")}
+
       <Header clickNotification={Notification}/>
 
         <Style.FilterArea>

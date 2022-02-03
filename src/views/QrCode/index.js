@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import * as Styles from './styles'
 import Qr from 'react-qr-code'
+import { useNavigate } from 'react-router-dom'
 
 //Nossos componentes
 import Header from '../../components/Header'
@@ -9,14 +10,19 @@ import Footer from '../../components/Footer'
 function QrCode(){
 
     const [mac, setMac] = useState()
+    const [redirect, setRedirect] = useState(false)//Se redirect for true, vai ser redirecionado pra outra página
+    const navigate = useNavigate()
 
     async function saveMac(){ //Salvar o macaddress do Qrcode
         await localStorage.setItem('@todo/macaddress', mac) //Salva informações no navegador. O primeiro parâmetro é a chave e o segundo é o valor
+        setRedirect(true) //Alterabdo o Valor de redirect
     }
 
     return(
         <Styles.Container>
             <Header/>
+
+            {redirect && navigate("/")}
 
             <Styles.Content>
                 <h1>CAPTURE O QRCODE PELO CELULAR</h1>
