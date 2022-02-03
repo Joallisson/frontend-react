@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 //IMPORTANDO API
 import api from '../../services/api'
 
+import isConnected from '../../utils/isConnected';
+
 //NOSSOS COMPONENTES
 import Header from '../../components/Header'
 import Footer from '../../components/Footer';
@@ -30,6 +32,7 @@ function Home() {
 
   useEffect(() => {
     loadTasks()
+    alert(isConnected)
   }, [filterActived])
 
   return (

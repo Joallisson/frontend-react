@@ -27,6 +27,10 @@ export const TopCard = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    h3{
+        text-align: center;
+    }
 `
 
 export const BottomCard = styled.div`
