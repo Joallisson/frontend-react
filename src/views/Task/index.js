@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import isConnected from "../../utils/isConnected";
 import * as Styles from './styles'
 import { useParams, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
@@ -95,8 +96,14 @@ function Task({match}){
     }
 
     useEffect(() => {  //Carregar funções dentro do use effect
+        if (!isConnected) { //Senão estiver vazio ou não conectado, então redireciona para outra para o QrCode
+            setRedirect(true)
+        }
+
         LoadTaskDetails()
     }, [])
+
+    
 
     return(
         <Styles.Container>

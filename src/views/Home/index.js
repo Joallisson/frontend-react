@@ -35,7 +35,7 @@ function Home() {
 
   useEffect(() => {
     loadTasks()
-    if (!isConnected) { //Senão estiver conectado, então vai ser redirecionado
+    if (!isConnected) { //Senão estiver conectado, então vai ser redirecionado ou Se isConnected estiver vazio, então vai ser redirecionado
       setRedirect(true)
     }
   }, [filterActived])

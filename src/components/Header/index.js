@@ -3,6 +3,7 @@ import * as Style from './styles'
 
 import {Link} from 'react-router-dom'
 import api from '../../services/api'
+import isConnected from '../../utils/isConnected'
 
 import logo from '../../Assets/logo.png';
 import bell from '../../Assets/bell.png'
@@ -23,6 +24,11 @@ function Header(props) {
     lateVerify()
   })
 
+  async function Logout(){ //Sair da sincronização da aplicação web
+    localStorage.removeItem('@todo/macaddress')
+    window.location.reload()
+  }
+
   return (
     <Style.Container>
 
@@ -36,13 +42,22 @@ function Header(props) {
 
         <Link to='/task'>NOVA TAREFA</Link>
         <span className='dividir'/>
-        
-        <Link to='/qrcode'>SINCRONIZAR CELULAR</Link>
+
+        { !isConnected ? //Senão estiver conectado vai aparecer a opção para sincronizar o celular
+          <>
+            <Link to='/qrcode'>SINCRONIZAR CELULAR</Link>
+            <span className='dividir'/>
+          </>
+          : //Se tiver conectado, vai aparecer a opção de sair
+          <>
+            <button onClick={Logout}>SAIR</button>
+            <span className='dividir'/>
+          </>
+        }
 
         {
           lateCount &&
           <>
-            <span className='dividir'/>
             <button onClick={props.clickNotification} id='notification'>
               <img src={bell} alt="Notificação"/>
               <span>{lateCount}</span>
