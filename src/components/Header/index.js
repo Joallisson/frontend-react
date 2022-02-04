@@ -14,7 +14,7 @@ function Header(props) {
   const [lateCount, setLateCount] = useState() //Armazena a quantidade de tarefas atrasadas
 
   async function lateVerify(){ //Verificar tarefas atrasadas e mostrar no sininho
-    await api.get(`/task/filter/late/11:11:11:11:11:11`)
+    await api.get(`/task/filter/late/${isConnected}`)
               .then((response) => {
                 setLateCount(response.data.length)
               })

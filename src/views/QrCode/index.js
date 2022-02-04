@@ -14,9 +14,13 @@ function QrCode(){
     const navigate = useNavigate()
 
     async function saveMac(){ //Salvar o macaddress do Qrcode
-        await localStorage.setItem('@todo/macaddress', mac) //Salva informações no navegador. O primeiro parâmetro é a chave e o segundo é o valor
-        setRedirect(true) //Alterabdo o Valor de redirect
-        window.location.reload() //Recarregar a página
+        if (!mac) { //Se o mac estiver vazio
+            alert("Você precisa informar o código que aparaeceu no seu celular!")
+        }else{ //Se o usuário preencheu com o número do mac, então armazena o mac no localStorage no navegador
+            await localStorage.setItem('@todo/macaddress', mac) //Salva informações no navegador. O primeiro parâmetro é a chave e o segundo é o valor
+            setRedirect(true) //Alterabdo o Valor de redirect
+            window.location.reload() //Recarregar a página
+        }
     }
 
     return(

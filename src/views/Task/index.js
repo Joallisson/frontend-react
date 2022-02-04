@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import isConnected from "../../utils/isConnected";
+import isConnected from "../../utils/isConnected"; //O isConnected retorna o mac armazenado no localStorage que o usuário digiou
 import * as Styles from './styles'
 import { useParams, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
@@ -32,7 +32,7 @@ function Task({match}){
     const [description, setDescription] = useState()
     const [date, setDate] = useState()
     const [hour, setHour] = useState()
-    const [macaddress, setMacaddress] = useState('11:11:11:11:11:11')
+    const [macaddress, setMacaddress] = useState(isConnected)
 
     async function LoadTaskDetails(){ //Carregar informações das tarefas assim que o usuário clicar nelas
         await api.get(`/task/${_id}`)
@@ -48,6 +48,7 @@ function Task({match}){
 
     async function Save(){ //Salvar dados de cadastros ou de atualização
 
+        //Se o usuáio não informar nenhum dos campos abaixo na hora de cadastar uma tarefa
         if(!title){
             alert("Você precisa informar o título da tarefa")
         }else if(!description){

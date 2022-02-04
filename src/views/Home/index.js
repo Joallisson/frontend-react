@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 //IMPORTANDO API
 import api from '../../services/api'
 
-import isConnected from '../../utils/isConnected';
+import isConnected from '../../utils/isConnected'; //o isConnected retorna o mac que o usuário digitou
 
 //NOSSOS COMPONENTES
 import Header from '../../components/Header'
@@ -23,7 +23,7 @@ function Home() {
   const navigate = useNavigate()
 
   async function loadTasks(){
-    await api.get(`/task/filter/${filterActived}/11:11:11:11:11:11`)
+    await api.get(`/task/filter/${filterActived}/${isConnected}`)
               .then(({data}) => {
                 setTasks(data)
               })
